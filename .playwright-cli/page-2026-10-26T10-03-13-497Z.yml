@@ -1,0 +1,49 @@
+- generic [active] [ref=f1e1]:
+  - generic [ref=f1e3]:
+    - generic [ref=f1e7]:
+      - link [ref=f1e9] [cursor=pointer]:
+        - /url: https://developers.tiktok.com/
+        - img "TikTok for Developers" [ref=f1e10]:
+          - generic [ref=f1e11]: for developers
+      - navigation [ref=f1e14]:
+        - button "Products" [ref=f1e15] [cursor=pointer]
+        - link "Docs" [ref=f1e19] [cursor=pointer]:
+          - /url: https://developers.tiktok.com/docs/en/welcome
+        - link "Support" [ref=f1e21] [cursor=pointer]:
+          - /url: https://developers.tiktok.com/portal/support
+        - link "Blog" [ref=f1e23] [cursor=pointer]:
+          - /url: https://developers.tiktok.com/blogs
+    - generic [ref=f1e34]:
+      - generic [ref=f1e35]:
+        - paragraph [ref=f1e36]: Connect with TikTok now
+        - heading "Get started with TikTok for developers" [level=1] [ref=f1e37]:
+          - generic [ref=f1e38]: Get started with
+          - generic [ref=f1e39]: TikTok for developers
+      - generic [ref=f1e40]:
+        - generic [ref=f1e41]:
+          - heading "Choose how to log in" [level=2] [ref=f1e42]
+          - paragraph [ref=f1e43]: Select your account type.
+        - radiogroup "Account type" [ref=f1e44]:
+          - radio "Enterprise developer Log in with the email used to set up your TikTok for Developers account." [ref=f1e45] [cursor=pointer]:
+            - generic [ref=f1e50]:
+              - generic [ref=f1e51]: Enterprise developer
+              - generic [ref=f1e53]: Log in with the email used to set up your TikTok for Developers account.
+        - generic [ref=f1e54]:
+          - paragraph [ref=f1e55]:
+            - text: Don't have a developer account?
+            - link "Sign up" [ref=f1e56] [cursor=pointer]:
+              - /url: /portal/signup?from=https%3A%2F%2Fdevelopers.tiktok.com%2Fportal%2Fapps
+          - paragraph [ref=f1e57]:
+            - text: Can't log in to your account?
+            - link "Get support" [ref=f1e58] [cursor=pointer]:
+              - /url: https://developers.tiktok.com/portal/support
+  - generic:
+    - generic:
+      - button "Open chat support" [ref=f1e59]:
+        - generic [ref=f1e60]:
+          - img "AI Assistant"
+      - dialog:
+        - banner:
+          - generic:
+            - heading [level=4]: AI Assistant
+          - button

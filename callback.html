@@ -1,0 +1,10 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Anmeldung abgeschlossen</title><link rel="stylesheet" href="style.css"></head><body>
+<h1>Anmeldung bei TikTok</h1>
+<p id="msg">Einen Moment.</p>
+<script>
+var p=new URLSearchParams(location.search);var m=document.getElementById('msg');
+if(p.get('code')){m.textContent='Anmeldung erfolgreich. Das Werkzeug übernimmt den Rest, dieses Fenster kann geschlossen werden.';}
+else if(p.get('error')){m.textContent='Anmeldung fehlgeschlagen: '+p.get('error');}
+else{m.textContent='Keine Anmeldedaten erhalten.';}
+</script>
+</body></html>

@@ -1,8 +1,8 @@
 <!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>CBD040 Slides</title>
 <style>body{margin:0;padding:16px;background:#f7f4ec;font:16px system-ui,sans-serif;color:#23272a}img{display:block;width:100%;max-width:540px;margin:0 auto 16px;border-radius:8px}p,pre,button{display:block;max-width:540px;margin:0 auto 16px}pre{white-space:pre-wrap;font:inherit;background:#fff;padding:12px;border-radius:8px}button{width:100%;padding:14px;font:600 17px system-ui;border:0;border-radius:10px;background:#2f4a3a;color:#fff}</style></head>
-<body><button id="sichern">Alle 7 Bilder in Fotos sichern</button>
+<body><button id="sichern">1. Alle 7 Bilder in Fotos sichern</button>
 <p id="hinweis">Danach im Teilen-Menü "7 Bilder sichern" wählen.</p>
-<button id="kopieren">Caption kopieren</button>
+<button id="kopieren">2. Caption mit Hashtags kopieren</button>
 <pre id="caption">Als Nate Diaz 2016 auf der Pressekonferenz an seinem CBD-Vape gezogen hat, war CBD im Wettkampf noch verboten. Hättest du das gedacht?
 
 #cbd #sport #doping #ufc #cbd040</pre>
@@ -18,9 +18,17 @@ document.getElementById('sichern').onclick = async () => {
     else document.getElementById('hinweis').textContent = 'Teilen geht hier nicht. Bilder einzeln lange drücken und "Zu Fotos hinzufügen" wählen.';
   } catch (e) {}
 };
-document.getElementById('kopieren').onclick = async () => {
-  await navigator.clipboard.writeText(document.getElementById('caption').textContent);
-  document.getElementById('kopieren').textContent = 'Kopiert';
+document.getElementById('kopieren').onclick = () => {
+  const t = document.getElementById('caption').textContent;
+  const fertig = () => { document.getElementById('kopieren').textContent = 'Kopiert, jetzt in TikTok einfügen'; };
+  const alt = () => {
+    const a = document.createElement('textarea');
+    a.value = t; a.setAttribute('readonly', ''); a.style.position = 'fixed'; a.style.opacity = '0';
+    document.body.appendChild(a); a.select(); a.setSelectionRange(0, t.length);
+    document.execCommand('copy'); a.remove(); fertig();
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(fertig, alt);
+  else alt();
 };
 </script>
 </body></html>

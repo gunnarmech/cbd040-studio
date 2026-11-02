@@ -1,0 +1,34 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>CBD040 Slides</title>
+<style>body{margin:0;padding:16px;background:#f7f4ec;font:16px system-ui,sans-serif;color:#23272a}img{display:block;width:100%;max-width:540px;margin:0 auto 16px;border-radius:8px}p,pre,button{display:block;max-width:540px;margin:0 auto 16px}pre{white-space:pre-wrap;font:inherit;background:#fff;padding:12px;border-radius:8px}button{width:100%;padding:14px;font:600 17px system-ui;border:0;border-radius:10px;background:#2f4a3a;color:#fff}</style></head>
+<body><button id="sichern">1. Alle 7 Bilder in Fotos sichern</button>
+<p id="hinweis">Danach im Teilen-Menü "7 Bilder sichern" wählen.</p>
+<button id="kopieren">2. Caption mit Hashtags kopieren</button>
+<pre id="caption">Ich bin ehrlich gesagt ziemlich Ottensen, nur ohne Lastenrad. Welcher Stadtteil fehlt hier unbedingt?
+
+#hamburg #stadtteile #hamburgliebe #hamburgtipps #cbd040</pre>
+<img src="slide-01.jpg"><img src="slide-02.jpg"><img src="slide-03.jpg"><img src="slide-04.jpg"><img src="slide-05.jpg"><img src="slide-06.jpg"><img src="slide-07.jpg">
+<script>
+const n = 7;
+document.getElementById('sichern').onclick = async () => {
+  try {
+    const files = await Promise.all(Array.from({ length: n }, (_, i) =>
+      fetch('slide-0' + (i + 1) + '.jpg').then(r => r.blob())
+        .then(b => new File([b], 'slide-0' + (i + 1) + '.jpg', { type: 'image/jpeg' }))));
+    if (navigator.canShare && navigator.canShare({ files })) await navigator.share({ files });
+    else document.getElementById('hinweis').textContent = 'Teilen geht hier nicht. Bilder einzeln lange drücken und "Zu Fotos hinzufügen" wählen.';
+  } catch (e) {}
+};
+document.getElementById('kopieren').onclick = () => {
+  const t = document.getElementById('caption').textContent;
+  const fertig = () => { document.getElementById('kopieren').textContent = 'Kopiert, jetzt in TikTok einfügen'; };
+  const alt = () => {
+    const a = document.createElement('textarea');
+    a.value = t; a.setAttribute('readonly', ''); a.style.position = 'fixed'; a.style.opacity = '0';
+    document.body.appendChild(a); a.select(); a.setSelectionRange(0, t.length);
+    document.execCommand('copy'); a.remove(); fertig();
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(fertig, alt);
+  else alt();
+};
+</script>
+</body></html>
